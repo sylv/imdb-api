@@ -1,0 +1,15 @@
+export enum IMDBTitleType {
+  MOVIE,
+  SERIES,
+  EPISODE,
+  VIDEO,
+  GAME,
+}
+
+export enum IMDBErrorCodes {
+  SERVER_ERROR = "IMDB_SERVER_ERROR",
+  NOT_FOUND = "IMDB_NOT_FOUND",
+  NO_PARENT = "NO_PARENT",
+  INVALID_ID = "INVALID_ID",
+  UNKNOWN_TYPE = "UNKNOWN_TYPE",
+}
