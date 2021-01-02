@@ -1,6 +1,6 @@
 {
   "name": "@ryanke/imdb-api",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A scraping library for IMDb",
   "main": "dist/index.js",
   "repository": "https://github.com/sylv/imdb-api.git",
