@@ -1,6 +1,7 @@
 import { getTitle } from "../methods/getTitle";
 import { getTitlePartial } from "../methods/getTitlePartial";
 import { search } from "../methods/search";
+import { IMDBTitleType } from "../types";
 
 export class IMDB {
   /**
@@ -12,10 +13,11 @@ export class IMDB {
 
   /**
    * Get a partial title by name.
-   * @param name
+   * @param name The name of the title to search for.
+   * @param type The type of the title - results that do not match this type are ignored.
    */
-  async getPartialTitleByName(name: string) {
-    const results = await search(name);
+  async getPartialTitleByName(name: string, type?: IMDBTitleType) {
+    const results = await search(name, type);
     const best = results.shift();
     return best;
   }
@@ -29,9 +31,11 @@ export class IMDB {
 
   /**
    * Get a title by name.
+   * @param name The name of the title to search for.
+   * @param type The type of the title - results that do not match this type are ignored.
    */
-  async getTitleByName(name: string) {
-    const partial = await this.getPartialTitleByName(name);
+  async getTitleByName(name: string, type?: IMDBTitleType) {
+    const partial = await this.getPartialTitleByName(name, type);
     if (!partial) return;
     return partial.getFullTitle();
   }

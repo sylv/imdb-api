@@ -2,13 +2,13 @@ import fetch from "node-fetch";
 import { IMDBImage } from "../classes/IMDBImage";
 import { IMDBTitlePartial } from "../classes/IMDBTitlePartial";
 import { IMDB_SEARCH } from "../constants";
-import { IMDBErrorCodes } from "../types";
+import { IMDBErrorCodes, IMDBTitleType } from "../types";
 import { IMDBSearchResultBody } from "../types/IMDBSearchResultBody";
 
 /**
  * Search IMDb for the given query.
  */
-export async function search(query: string): Promise<IMDBTitlePartial[]> {
+export async function search(query: string, type?: IMDBTitleType): Promise<IMDBTitlePartial[]> {
   const clean = query
     .replace(/[^A-z0-9 ]+/, "")
     .trim()
@@ -24,7 +24,7 @@ export async function search(query: string): Promise<IMDBTitlePartial[]> {
   }
 
   const body: IMDBSearchResultBody = await response.json();
-  return body.d
+  const results = body.d
     .filter((result) => result.q)
     .map((result) => {
       return new IMDBTitlePartial({
@@ -42,4 +42,7 @@ export async function search(query: string): Promise<IMDBTitlePartial[]> {
         })),
       });
     });
+
+  if (type !== undefined) return results.filter((result) => result.type === type);
+  return results;
 }
