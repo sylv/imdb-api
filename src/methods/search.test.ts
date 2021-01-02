@@ -1,6 +1,6 @@
 import { search } from "./search";
 import { IMDBTitleType } from "../types";
-import { IMDBTitle } from "../classes/IMDBTitle";
+import crypto from "crypto";
 
 test.concurrent("Should handle invalid search terms", async () => {
   const result = await search(".");
@@ -30,4 +30,10 @@ test.concurrent("Should find the Limitless TV Show with a type filter", async ()
   expect(best).toBeDefined();
   expect(best?.id).toBe("tt4422836");
   expect(best?.type).toBe(IMDBTitleType.SERIES);
+});
+
+test.concurrent("Should return an empty array when there are no search results", async () => {
+  const query = crypto.randomBytes(16).toString("hex");
+  const result = await search(query);
+  expect(result).toEqual([]);
 });

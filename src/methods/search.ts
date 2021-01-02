@@ -24,6 +24,7 @@ export async function search(query: string, type?: IMDBTitleType): Promise<IMDBT
   }
 
   const body: IMDBSearchResultBody = await response.json();
+  if (!body.d) return [];
   const results = body.d
     .filter((result) => result.q)
     .map((result) => {
