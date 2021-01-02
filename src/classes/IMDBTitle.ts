@@ -1,8 +1,41 @@
-import { AggregateRating, Person, Review, VideoObject } from "schema-dts";
 import { parseDuration } from "../helpers/parseDuration";
 import { IMDBTitleType } from "../types";
 import { IMDBTitleBase } from "./IMDBTitleBase";
 import { IMDBTitlePartial } from "./IMDBTitlePartial";
+
+export interface IMDBAggregateRating {
+  ratingCount: number;
+  bestRating: string;
+  worstRating: string;
+  ratingValue: string;
+}
+
+export interface IMDBRating {
+  worstRating: string;
+  bestRating: string;
+  ratingValue: string;
+}
+
+export interface IMDBReview {
+  dateCreated: string;
+  inLanguage: string;
+  name: string;
+  reviewBody: string;
+  reviewRating: IMDBRating;
+}
+
+export interface IMDBVideo {
+  name: string;
+  embedUrl: string;
+  thumbnailUrl: string;
+  description: string;
+  uploadDate: string;
+}
+
+export interface IMDBPerson {
+  url: string;
+  name: string;
+}
 
 // export interface IMDBTitleData extends Omit<TVSeries, "@type"> {
 export interface IMDBTitleData {
@@ -13,15 +46,15 @@ export interface IMDBTitleData {
   image: string;
   genre: string[];
   contentRating: string;
-  actor: Person[];
-  creator: Person[];
+  actor: IMDBPerson[];
+  creator: IMDBPerson[];
   description: string;
   storyline?: string;
   datePublished: string;
   keywords?: string;
-  aggregateRating: AggregateRating;
-  review: Review;
-  trailer: VideoObject;
+  aggregateRating: IMDBAggregateRating;
+  review: IMDBReview;
+  trailer: IMDBVideo;
   timeRequired?: string;
   related: IMDBTitlePartial[];
   seasonNumber?: number;
@@ -35,13 +68,13 @@ export interface IMDBTitleData {
 export class IMDBTitle extends IMDBTitleBase {
   readonly genre: string[];
   readonly contentRating: string;
-  readonly cast: Person[];
-  readonly creators: Person[];
+  readonly cast: IMDBPerson[];
+  readonly creators: IMDBPerson[];
   readonly released: Date;
-  readonly rating: AggregateRating;
-  readonly review: Review;
+  readonly rating: IMDBAggregateRating;
+  readonly review: IMDBReview;
   readonly storyline?: string;
-  readonly trailer: VideoObject;
+  readonly trailer: IMDBVideo;
   readonly related: IMDBTitlePartial[];
   readonly duration?: number;
   readonly seasonNumber?: number;
