@@ -4,16 +4,13 @@ import { IMDBTitlePartial } from "../classes/IMDBTitlePartial";
 import { IMDB_SEARCH } from "../constants";
 import { IMDBErrorCodes, IMDBTitleType } from "../types";
 import { IMDBSearchResultBody } from "../types/IMDBSearchResultBody";
+import { getSearchQuery } from "../helpers/getSearchQuery";
 
 /**
  * Search IMDb for the given query.
  */
 export async function search(query: string, type?: IMDBTitleType): Promise<IMDBTitlePartial[]> {
-  const clean = query
-    .replace(/[^A-z0-9 ]+/, "")
-    .trim()
-    .toLowerCase();
-
+  const clean = getSearchQuery(query, "_");
   if (!clean) return [];
   const firstChar = clean[0];
   const url = IMDB_SEARCH(firstChar, clean);

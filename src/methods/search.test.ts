@@ -37,3 +37,11 @@ test.concurrent("Should return an empty array when there are no search results",
   const result = await search(query);
   expect(result).toEqual([]);
 });
+
+test.concurrent("Should find a title by alias", async () => {
+  const result = await search("avatar tlok");
+  const best = result.shift();
+  expect(best).toBeDefined();
+  expect(best?.id).toBe("tt1695360");
+  expect(best?.type).toBe(IMDBTitleType.SERIES);
+});
