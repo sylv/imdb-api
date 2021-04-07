@@ -1,9 +1,11 @@
 export enum IMDBTitleType {
   MOVIE,
   SERIES,
+  SHORT,
   EPISODE,
   VIDEO,
   GAME,
+  SPECIAL,
 }
 
 export enum IMDBErrorCodes {
