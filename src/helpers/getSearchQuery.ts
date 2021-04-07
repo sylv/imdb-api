@@ -9,9 +9,10 @@ import { SEARCH_ALIASES } from "../aliases";
 export function getSearchQuery(input: string, spaceChar?: string): string | undefined {
   const query = input
     .replace(/[^A-z0-9- ]/g, "")
-    .split(/-| /g)
+    .split(/-| +/g)
     .join(" ")
-    .toLowerCase();
+    .toLowerCase()
+    .trim();
 
   for (const alias of SEARCH_ALIASES) {
     const match = query.match(alias.pattern);
