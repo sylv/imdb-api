@@ -6,4 +6,6 @@ export enum TitleType {
   VIDEO,
   GAME,
   SPECIAL,
+  PODCAST_SERIES,
+  PODCAST_EPISODE,
 }

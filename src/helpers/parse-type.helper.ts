@@ -15,6 +15,8 @@ const TYPE_MAP = new Map<string, TitleType>([
   ["episode", TitleType.EPISODE],
   ["videogame", TitleType.GAME],
   ["video", TitleType.VIDEO],
+  ["podcastseries", TitleType.PODCAST_SERIES],
+  ["podcastepisode", TitleType.PODCAST_EPISODE],
 ]);
 
 export function parseType(input: string): TitleType {

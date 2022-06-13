@@ -1,6 +1,6 @@
 {
   "name": "@ryanke/imdb-api",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A scraping library for IMDb",
   "author": "Ryan <ryan@sylver.me>",
   "license": "MIT",
